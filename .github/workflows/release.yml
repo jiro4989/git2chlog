@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  APP_NAME: 'APPNAME'
+  APP_NAME: 'git2chlog'
   NIM_VERSION: 'stable'
 
 jobs:

@@ -1,6 +1,6 @@
 import unittest
 
-include APPNAME
+include git2chlog
 
 suite "suite":
   test "test":
