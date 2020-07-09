@@ -3,7 +3,7 @@ import os, strutils, strformat
 import git2chlogpkg/git
 
 const
-  version = """codepoint version 1.1.2
+  version = """codepoint version 1.1.3
 Copyright (c) 2020 jiro4989
 Released under the MIT License.
 https://github.com/jiro4989/git2chlog"""
@@ -17,7 +17,7 @@ proc formatLog(logs: openArray[string], pkg, version, author, email, datetime: s
   for log in logs:
     result.add(&"  * {log}")
   result.add("")
-  result.add(&" -- {author} <{email}> {datetime}")
+  result.add(&" -- {author} <{email}>  {datetime}")
   result.add("")
 
 proc getTagSets(): seq[(string, string)] =
