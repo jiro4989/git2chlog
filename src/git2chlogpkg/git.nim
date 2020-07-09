@@ -18,6 +18,11 @@ proc getAuthorName*(): string =
 proc getAuthorEmail*(): string =
   result = execProcess("git", args = logArgsAuthorEmail, options = {poUsePath}).strip
 
+proc getAuthorDate*(): string =
+  let lines = execProcess("git", args = logArgsAuthorDate, options = {poUsePath}).strip.split("\n")
+  if 1 <= lines.len:
+    result = lines[0]
+
 proc getAuthorDate*(startTag, endTag: string): string =
   let args = concat(logArgsAuthorDate, @[&"{startTag}..{endTag}"])
   let lines = execProcess("git", args = args, options = {poUsePath}).strip.split("\n")

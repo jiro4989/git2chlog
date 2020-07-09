@@ -24,19 +24,30 @@ proc getTagSets(): seq[(string, string)] =
 
 iterator generateDebianChangeLog(pkg, author, email: string): string =
   let tagSets = getTagSets()
-  for tagSet in tagSets:
-    let
-      endTag = tagSet[0]
-      startTag = tagSet[1]
-    let lines = getLog(startTag, endTag).formatLog(
+  if tagSets.len < 1:
+    let lines = getLog().formatLog(
       pkg = pkg,
-      version = startTag,
+      version = "v0.0.0",
       author = author,
       email = email,
-      datetime = git.getAuthorDate(startTag, endTag),
+      datetime = git.getAuthorDate(),
     )
     for line in lines:
       yield line
+  else:
+    for tagSet in tagSets:
+      let
+        endTag = tagSet[0]
+        startTag = tagSet[1]
+      let lines = getLog(startTag, endTag).formatLog(
+        pkg = pkg,
+        version = startTag,
+        author = author,
+        email = email,
+        datetime = git.getAuthorDate(startTag, endTag),
+      )
+      for line in lines:
+        yield line
 
 proc cmdDeb(pkg = "", author = "", email = "", outFile = ""): int =
   let
