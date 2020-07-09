@@ -1,12 +1,14 @@
 import osproc
-from strutils import split
+from strutils import split, strip
 from strformat import `&`
 
 proc getAuthorName*(): string =
-  discard
+  let args = ["log", "--format=%an", "--max-parents=0"]
+  result = execProcess("git", args = args, options = {poUsePath}).strip
 
 proc getAuthorEmail*(): string =
-  discard
+  let args = ["log", "--format=%ae", "--max-parents=0"]
+  result = execProcess("git", args = args, options = {poUsePath}).strip
 
 proc getLog*(startTag, endTag: string): seq[string] =
   let args = ["log", "--pretty=format:(%cn) %s", &"{startTag}..{endTag}"]
