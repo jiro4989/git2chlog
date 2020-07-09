@@ -3,7 +3,7 @@ import os, times, strutils, strformat
 import git2chlogpkg/git
 
 const
-  version = """codepoint version 1.1.0
+  version = """codepoint version 1.1.1
 Copyright (c) 2020 jiro4989
 Released under the MIT License.
 https://github.com/jiro4989/git2chlog"""
