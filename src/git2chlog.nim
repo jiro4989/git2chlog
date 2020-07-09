@@ -38,7 +38,7 @@ iterator generateDebianChangeLog(pkg, author, email: string): string =
     for line in lines:
       yield line
 
-proc cmdDeb(pkg = "", author = "", email = "", datetime = "", outFile = ""): int =
+proc cmdDeb(pkg = "", author = "", email = "", outFile = ""): int =
   let
     pkg =
       if pkg == "": getCurrentDir().splitPath.tail
@@ -49,9 +49,6 @@ proc cmdDeb(pkg = "", author = "", email = "", datetime = "", outFile = ""): int
     email =
       if email == "": git.getAuthorEmail()
       else: email
-    datetime =
-      if datetime == "": $now()
-      else: datetime
 
   var file =
     if outFile == "": stdout
