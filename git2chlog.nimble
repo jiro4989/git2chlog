@@ -1,8 +1,8 @@
 # Package
 
-version       = "0.1.0"
+version       = "1.0.0"
 author        = "jiro4989"
-description   = "TODO"
+description   = "git2chlog generates changelog from git-log."
 license       = "MIT"
 srcDir        = "src"
 bin           = @["git2chlog"]
