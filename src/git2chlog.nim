@@ -63,7 +63,7 @@ proc cmdDeb(pkg = "", author = "", email = "", outFile = ""): int =
 
   var file =
     if outFile == "": stdout
-    else: open(outFile, fmRead)
+    else: open(outFile, fmWrite)
   defer:
     file.close()
 
