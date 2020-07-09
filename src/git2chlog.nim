@@ -1,4 +1,4 @@
-import os, times, strutils, strformat
+import os, strutils, strformat
 
 import git2chlogpkg/git
 
