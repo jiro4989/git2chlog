@@ -17,7 +17,7 @@ proc formatLog(logs: openArray[string], pkg, version, author, email, datetime: s
   for log in logs:
     result.add(&"  * {log}")
   result.add("")
-  result.add(&" -- {author} <{email}> {datetime}")
+  result.add(&" -- {author} <{email}>  {datetime}")
   result.add("")
 
 proc getTagSets(): seq[(string, string)] =
