@@ -26,8 +26,8 @@ iterator generateDebianChangeLog(pkg, author, email, datetime: string): string =
   let tagSets = getTagSets()
   for tagSet in tagSets:
     let
-      startTag = tagSet[0]
-      endTag = tagSet[1]
+      endTag = tagSet[0]
+      startTag = tagSet[1]
     let lines = getLog(startTag, endTag).formatLog(
       pkg = pkg,
       version = startTag,
@@ -47,7 +47,7 @@ proc cmdDeb(pkg = "", author = "", email = "", datetime = "", outFile = ""): int
       if author == "": git.getAuthorName()
       else: author
     email =
-      if author == "": git.getAuthorEmail()
+      if email == "": git.getAuthorEmail()
       else: email
     datetime =
       if datetime == "": $now()
