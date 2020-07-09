@@ -1,4 +1,4 @@
-import strutils, strformat
+import os, times, strutils, strformat
 
 import git2chlogpkg/git
 
@@ -38,8 +38,29 @@ iterator generateDebianChangeLog(pkg, author, email, datetime: string): string =
     for line in lines:
       yield line
 
-proc cmdDeb(pkg = "", author = "", email = "", datetime = ""): int =
-  discard
+proc cmdDeb(pkg = "", author = "", email = "", datetime = "", outFile = ""): int =
+  let
+    pkg =
+      if pkg == "": getCurrentDir().splitPath.tail
+      else: pkg
+    author =
+      if author == "": git.getAuthorName()
+      else: author
+    email =
+      if author == "": git.getAuthorEmail()
+      else: email
+    datetime =
+      if datetime == "": $now()
+      else: datetime
+
+  var file =
+    if outFile == "": stdout
+    else: open(outFile, fmRead)
+  defer:
+    file.close()
+
+  for line in generateDebianChangeLog(pkg, author, email, datetime):
+    file.writeLine(line)
 
 when isMainModule and not defined modeTest:
   import cligen
