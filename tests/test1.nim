@@ -10,7 +10,7 @@ suite "proc formatLog":
       "  * a",
       "  * b",
       "",
-      " -- author <email@example.com> 2020-01-01",
+      " -- author <email@example.com>  2020-01-01",
       "",
     ]
     let got = ["a", "b"].formatLog("pkg", "v1.0.0", "author", "email@example.com", "2020-01-01")
