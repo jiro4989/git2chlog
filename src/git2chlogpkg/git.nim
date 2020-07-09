@@ -10,8 +10,8 @@ proc getAuthorEmail*(): string =
   let args = ["--no-pager", "log", "--format=%ae", "--max-parents=0"]
   result = execProcess("git", args = args, options = {poUsePath}).strip
 
-proc getLog*(startTag, endTag: string): seq[string] =
-  let args = ["--no-pager", "log", "--pretty=format:(%cn) %s", &"{startTag}..{endTag}"]
+proc getLog*(tag1, tag2: string): seq[string] =
+  let args = ["--no-pager", "log", "--pretty=format:(%cn) %s", &"{tag1}..{tag2}"]
   result = execProcess("git", args = args, options = {poUsePath}).split("\n")
 
 proc getTag*(): seq[string] =
