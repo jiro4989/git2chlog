@@ -8,7 +8,7 @@ Copyright (c) 2020 jiro4989
 Released under the MIT License.
 https://github.com/jiro4989/git2chlog"""
 
-proc formatLog(logs: seq[string], pkg, version, author, email, datetime: string): seq[string] =
+proc formatLog(logs: openArray[string], pkg, version, author, email, datetime: string): seq[string] =
   result.add(&"{pkg} ({version}) unstable; urgency=low")
   result.add("")
   for log in logs:
