@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.1.1"
+version       = "1.1.2"
 author        = "jiro4989"
 description   = "git2chlog generates changelog from git-log."
 license       = "MIT"
