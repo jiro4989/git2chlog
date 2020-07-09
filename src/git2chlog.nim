@@ -22,7 +22,7 @@ proc getTagSets(): seq[(string, string)] =
   for i in 0 ..< tags.len - 1:
     result.add((tags[i], tags[i+1]))
 
-iterator generateDebianChangeLog(pkg, author, email, datetime: string): string =
+iterator generateDebianChangeLog(pkg, author, email: string): string =
   let tagSets = getTagSets()
   for tagSet in tagSets:
     let
@@ -33,7 +33,7 @@ iterator generateDebianChangeLog(pkg, author, email, datetime: string): string =
       version = startTag,
       author = author,
       email = email,
-      datetime = datetime,
+      datetime = git.getAuthorDate(startTag, endTag),
     )
     for line in lines:
       yield line
@@ -59,7 +59,7 @@ proc cmdDeb(pkg = "", author = "", email = "", datetime = "", outFile = ""): int
   defer:
     file.close()
 
-  for line in generateDebianChangeLog(pkg, author, email, datetime):
+  for line in generateDebianChangeLog(pkg, author, email):
     file.writeLine(line)
 
 when isMainModule and not defined modeTest:
