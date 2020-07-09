@@ -1,4 +1,4 @@
-import os, times, strutils, strformat
+import os, strutils, strformat
 
 import git2chlogpkg/git
 
@@ -9,6 +9,9 @@ Released under the MIT License.
 https://github.com/jiro4989/git2chlog"""
 
 proc formatLog(logs: openArray[string], pkg, version, author, email, datetime: string): seq[string] =
+  # remove 'v' prefix
+  let version = version.strip(trailing = false, chars = {'v'})
+
   result.add(&"{pkg} ({version}) unstable; urgency=low")
   result.add("")
   for log in logs:
