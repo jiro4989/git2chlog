@@ -12,7 +12,7 @@ proc formatLog(logs: openArray[string], pkg, version, author, email, datetime: s
   # remove 'v' prefix
   let version = version.strip(trailing = false, chars = {'v'})
 
-  result.add(&"{pkg} ({version}-1) unstable; urgency=low")
+  result.add(&"{pkg} ({version}) unstable; urgency=low")
   result.add("")
   for log in logs:
     result.add(&"  * {log}")

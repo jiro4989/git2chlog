@@ -5,7 +5,7 @@ include git2chlog
 suite "proc formatLog":
   test "normal":
     let want = @[
-      "pkg (1.0.0-1) unstable; urgency=low",
+      "pkg (1.0.0) unstable; urgency=low",
       "",
       "  * a",
       "  * b",
